@@ -1,7 +1,7 @@
 import json
 from comet.utils import DD
 
-device = "cuda"
+device = "cpu"
 
 save = False
 test_save = False

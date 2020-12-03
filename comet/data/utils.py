@@ -1,3 +1,4 @@
+import os
 import re
 import ftfy
 import json
@@ -5,6 +6,8 @@ import spacy
 import torch
 
 from tqdm import tqdm
+
+DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 
 
 def load_existing_data_loader(data_loader, path):
@@ -59,6 +62,8 @@ class TextEncoder(object):
     def __init__(self, encoder_path, bpe_path):
         self.nlp = spacy.load(
             'en', disable=['parser', 'tagger', 'ner', 'textcat'])
+        encoder_path = os.path.join(encoder_path)
+        bpe_path = os.path.join(bpe_path)
         self.encoder = json.load(open(encoder_path))
         self.decoder = {v: k for k, v in self.encoder.items()}
         merges = open(bpe_path, encoding='utf-8').read().split('\n')[1:-1]

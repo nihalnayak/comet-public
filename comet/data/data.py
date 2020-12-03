@@ -58,7 +58,7 @@ def save_eval_file(opt, stats, eval_type="losses", split="dev", ext="pickle"):
         raise
 
 
-def load_checkpoint(filename, gpu=True):
+def load_checkpoint(filename, gpu=False):
     if os.path.exists(filename):
         checkpoint = torch.load(
             filename, map_location=lambda storage, loc: storage)
